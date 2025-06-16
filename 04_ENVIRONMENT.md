@@ -76,6 +76,29 @@ bioinformatics software already installed, you should avoid using it if
 possible. Why? Because the module system isn't easily replicated by you or
 others on computers elsewhere. Recall Rule #2.
 
+Here are the most common `conda` commands.
+
+- `conda env list` shows environments available
+- `conda info --envs`` same as above
+- `conda activate` starts the base environment
+- `conda activate <name>` starts a named environment
+- `conda deactivate` deactivates the current environment
+- `conda info` lots of info about the current environment
+- `conda list` list packages in the current environment
+- `conda env create -f <file.yml>` create an enviroment from a YAML file
+- `conda env remove -n <name>` remove a named environment
+- `conda create -n <name>` create a new environment with nothing in it
+- `conda install <name>` install a package in current environment
+- `conda remove <name>` remove a package from the current environment
+
+When creating or modifying environments, use a YAML file rather than installing
+individual components.
+
+In general, use generic names like `blast` rather than `blast ==2.16.0`.
+
+To compare environments, `conda activate` each environment and then `diff` the
+outputs of `conda list`.
+
 ## Personal Computers ##
 
 You are expected to do some work on your personal computer(s) (see Rule #2).
