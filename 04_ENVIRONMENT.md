@@ -79,7 +79,7 @@ others on computers elsewhere. Recall Rule #2.
 Here are the most common `conda` commands.
 
 - `conda env list` shows environments available
-- `conda info --envs`` same as above
+- `conda info --envs` same as above
 - `conda activate` starts the base environment
 - `conda activate <name>` starts a named environment
 - `conda deactivate` deactivates the current environment
@@ -141,6 +141,7 @@ These "rules" apply to all languages:
 - Use tabs for left-side indentation unless the language says NO
 - Never hard-code file or directory paths
 - Avoid global variables
+- Functions don't have side-effects
 - De-nest conditionals
 - Avoid ISA inheritence or limit to 1 level
 - Python specifics
