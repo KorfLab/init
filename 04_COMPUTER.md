@@ -1,5 +1,5 @@
-Bioinformatics Environment
-==========================
+Computer Setup
+==============
 
 We do science and write code in a Unix/Linux environment.
 
@@ -21,14 +21,14 @@ means a Unix-like CLI.
 To install a local CLI environment, you can:
 
 - Buy a Mac
-- Install Linux on an older PC
+- Install Linux on an older PC (e.g. a $100 used laptop)
 - Install VirtualBox on PC and run some Linux distro (e.g. Lubuntu)
 - Install Cygwin on PC
 - Use the Linux environment in Windows
 
 Modify your login script (see `init/etc/profile` for inspiration).
 
-Use `top` or `htop` to monitor resources live. Use `/usr/bin/time -v` to
+Use `top` or `htop` to monitor resources live. Prepend `/usr/bin/time -v` to
 examine resources after a job is done. The normal `time` command doesn't do
 this. You may have to install `/usr/bin/time` via conda.
 
@@ -141,7 +141,7 @@ These "rules" apply to all languages:
 - Use tabs for left-side indentation unless the language says NO
 - Never hard-code file or directory paths
 - Avoid global variables
-- Functions don't have side-effects
+- Don't write function that have side-effects
 - De-nest conditionals
 - Avoid ISA inheritence or limit to 1 level
 - Python specifics

@@ -41,7 +41,7 @@ and knowledge. Here are the rules of this game.
 - You may not import any modules that require installation
 - You may look things up on the internet, but not copy-paste anything
 - You may download files, but not source code
-- If you indent with spaces, you fail
+- If you routinely violate the style guide, you fail
 
 
 ## Part 1: Setup ##
@@ -167,10 +167,11 @@ without making it too complex?
 Biological _features_ are generally described with 3 parts: a chromosome, a
 begin, and and end. This is sometimes of the form `chr1:100-200` and sometimes
 in a tab-delimited file. We frequently want to know which features in file1
-overlap which features in file2. Unlike the typical CS version of this problem,
-the features may overlap (e.g. alternative isoforms).
+overlap which features in file2. Note that features may overlap each other
+within a single file.
 
-Write a program that reports overlapping features. Make your own data.
+Write a program that reports overlapping features. Make your own data for
+development and testing (e.g. Rule #1).
 
 ### mRNAs
 

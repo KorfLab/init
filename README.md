@@ -17,7 +17,7 @@ the following order:
 - `01_MENTORING.md` Ian's mentoring philosphy
 - `02_EXPECTATIONS.md` what to expect when joining the lab
 - `03_RULES.md` best practices that are important enough to be called rules
-- `04_ENVIRONMENT.md` set up your bioinformatics environment
+- `04_COMPUTER.md` set up your computer for bioinformatics science
 - `05_WALKTHROUGH.md` experience some bioinformatics applications
 - `06_CLASSICS.md` learn bioinformatics programming by studying the classics
 - `07_EXAM.md` take the official KorfLab Bioinformatics Exam

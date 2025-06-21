@@ -12,7 +12,8 @@ MCB185. These things should be familiar to you.
 - Unix-standard CLI libraries in your favorite language
 - File I/O for normal and compressed files
 - Building and navigating arbitrarily complex list-dict data structures
-- JSON and YAML
+
+These technologies are also frequently required: JSON, YAML, XML, OOP, SQL.
 
 Historically, most bioinformatics software was written in C or Perl. Today,
 Python is a popular choice. Although less common, you may see some software

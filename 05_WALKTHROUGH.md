@@ -236,7 +236,7 @@ allowed). Try the following command:
 
 ```
 blastdbcmd -db build/ecoli -entry NP_414608.1
-``
+```
 
 Now save it to a file:
 
