@@ -188,7 +188,7 @@ If you want to improve your coding skills, write code. If you want to improve
 your copy-paste skills, copy-paste. Every time you copy-paste code instead of
 typing, brain cells die. You're here to learn, not be a copy-paste robot.
 
-## Don't indent with spaes ##
+## Don't indent with spaces ##
 
 I don't give a fuck if 4 space indent is preferred in Python, it's not
 preferred in this lab. Indent with tabs. If you can't tell the difference
