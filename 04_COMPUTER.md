@@ -157,13 +157,14 @@ These "rules" apply to all languages:
 	- Tabs and one true brace
 	- Everything is a pointer to a struct
 - Other Languages
-	- C++: what's wrong with plain old C?
-	- Java: system.out.println("hell no");
-	- Javascript: FFS no
-	- Julia: we tried that and it wasn't that great
-	- Lua: really? let's discuss
-	- Rust: maybe
-	- SQL: as long as it's followed by lite
+	- C++: `std::count << "C is better" << std::endl;`
+	- C#: `Console.WriteLine("MicroSoft Sucks");`
+	- Go: `fmt.Println("Yes, please")`
+	- Java: `system.out.println("hell.no.thank.you");`
+	- Javascript: `console.log("no, not for bioinformatics");`
+	- Julia: `print("it was swell but the swelling went down")`
+	- Lua: `print("Really? Let's discuss!")`
+	- Rust: `printlin!("Maybe. Let's discuss");`
 
 
 Plase Don't
@@ -187,7 +188,7 @@ If you want to improve your coding skills, write code. If you want to improve
 your copy-paste skills, copy-paste. Every time you copy-paste code instead of
 typing, brain cells die. You're here to learn, not be a copy-paste robot.
 
-## Don't indent with spaes ##
+## Don't indent with spaces ##
 
 I don't give a fuck if 4 space indent is preferred in Python, it's not
 preferred in this lab. Indent with tabs. If you can't tell the difference

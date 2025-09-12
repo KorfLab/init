@@ -362,7 +362,7 @@ def score_pwm(pwm, seq):
 	assert(len(pwm) == len(seq))
 	score = 0
 	for i in range(len(pwm)):
-		nt = seq[pos+i]
+		nt = seq[i]
 		score += pwm[i][nt]
 	return score
 
