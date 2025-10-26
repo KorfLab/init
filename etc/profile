@@ -6,6 +6,7 @@ alias ..="cd .."
 alias gs="git status"
 alias ga="git add"
 alias gp="git commit -m up; git push"
+alias time=/usr/bin/time
 
 PATH=$PATH:$HOME/bin:$HOME/Code/bin
 export PYTHONPATH=$PYTHONPATH:$HOME/lib:$HOME/Code/lib
