@@ -306,6 +306,71 @@ def readblosum(filename):
 					matrix[c1][c2] = int(v)
 	return matrix
 
+def readlegacyblast(filename):
+	"""Reads legacy blast report into alignment structs"""
+	fp = getfp(filename)
+	qid = None
+	qlen = None
+	sid = None
+	slen = None
+	bits = None
+	qb = None
+	qa = None
+	qe = None
+	sb = None
+	sa = None
+	se = None
+	for line in fp:
+		if line.startswith('Query='):
+			qid = line.split()[1]
+			for line in fp:
+				if line.rstrip().endswith('letters)'):
+					qlen = int(line.split()[0][1:])
+					break
+			sid = None
+			slen = None
+		elif line.startswith('>'):
+			nsid = line[1:].split()[0]
+
+			if sid is not None:
+				yield {'qid': qid, 'qlen': qlen, 'sid': sid, 'slen': slen,
+					'bits': bits, 'qb': qb, 'qe': qe, 'sb': sb, 'se': se,
+					'qa': qa, 'sa': sa}
+
+			sid = nsid
+			for line in fp:
+				if line.startswith('          Length ='):
+					slen = int(line.split()[2])
+					break
+			qb = None
+			qa = ''
+			qe = None
+			sb = None
+			sa = ''
+			se = None
+
+		elif line.startswith(' Score ='):
+			bits = line.split()[2]
+		elif line.startswith('Query:'):
+			f = line.split()
+			if qb is None: qb = int(f[1])
+			qa += f[2]
+			qe = int(f[3])
+			line = next(fp)
+			line = next(fp)
+			f = line.split()
+			if sb is None: sb = int(f[1])
+			sa += f[2]
+			se = int(f[3])
+		elif line.startswith('BLAST') or line.startswith('Lambda'):
+			if sid is not None:
+				yield {'qid': qid, 'qlen': qlen, 'sid': sid, 'slen': slen,
+					'bits': bits, 'qb': qb, 'qe': qe, 'sb': sb, 'se': se,
+					'qa': qa, 'sa': sa}
+			sid = None
+			slen = None
+
+	fp.close()
 
 #################
 ## PWM SECTION ##
