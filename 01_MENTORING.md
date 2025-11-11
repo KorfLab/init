@@ -125,7 +125,7 @@ or Educator. What kinds of properties do these positions typically have?
 	- You are drained by: indecision, failure
 	- People are amazed by your: skills, attention to detail
 	- Some people call you: obsessive
-	- You go to work because: it's your job
+	- You go to work because: you're a responsible person
 	- You will get out of this mess by: working harder
 - Educator: Teaching Professor, Science Communicator
 	- You take pride in: helping others

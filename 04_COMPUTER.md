@@ -158,12 +158,13 @@ These "rules" apply to all languages:
 	- Everything is a pointer to a struct
 - Other Languages
 	- C++: `std::count << "C is better" << std::endl;`
-	- C#: `Console.WriteLine("MicroSoft Sucks");`
+	- C#: `Console.WriteLine("See Java");`
 	- Go: `fmt.Println("Yes, please")`
 	- Java: `system.out.println("hell.no.thank.you");`
 	- Javascript: `console.log("no, not for bioinformatics");`
 	- Julia: `print("it was swell but the swelling went down")`
 	- Lua: `print("Really? Let's discuss!")`
+	- Perl: `print "sometimes you have to leave the past behind";`
 	- Rust: `printlin!("Maybe. Let's discuss");`
 
 
@@ -196,7 +197,7 @@ between the two lines below, please learn. If you are adamant about spaces for
 indentation, join another lab.
 
 ```
-while True
+while True:
 	# indented with a tab
     # indented with 4 spaces
 ```

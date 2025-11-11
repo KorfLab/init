@@ -170,8 +170,8 @@ easy way" instead of "the right way".
 
 Well stop doing it. Stop the copy-paste-modify practice. Stop looking up
 everthing on the Internet. Stop asking ChatGPT for answers. Stop using code
-completion. Use your brain to. Write every character of every line yourself,
-and when you get stuck ask a _person_ for help. Yes, this will take longer. But
+completion. Use your brain to write every character of every line yourself, and
+when you get stuck ask a _person_ for help. Yes, this will take longer. But
 you're here to learn, not to act like a robot.
 
 What makes a scientist a scientist? Two things:
