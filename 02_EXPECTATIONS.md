@@ -59,9 +59,10 @@ able to do:
 - Use a command line interface (e.g. argparse in Python)
 - Build and navigate arbitrarily nested data structures
 
-To gain these skills, you can take my course MCB185 either officially or on
-your own (https://github.com/iankorf/MCB185). Also try `06_ATOZ.md`. To test
-yourself try taking the KorfLab Bioinformatics Exam in `07_EXAM.md`.
+To gain these skills, you can take my course MCB185 either officially or
+on your own (https://github.com/iankorf/MCB185). Also try
+`06_PROGRAMMING.md`. To test yourself try taking the KorfLab
+Bioinformatics Exam in `07_EXAM.md`.
 
 In addition to programming, you need to be self-motivated. I'm not the kind of
 PI who checks in on you constantly. I make myself available to students for
@@ -69,12 +70,12 @@ several hours per week. If we haven't had a recent meeting, it's 100% your
 fault. I will help you every step of the way on just about anything you want
 help on, but you have to ask.
 
-MCB185 is a base level of skills and the exam is a base level assessment. Many
-projects require a more advanced level of programming. If you want more
-training problems, try solving some favorite bioinformatics programming
-problems in `06_ATOZ.md`. Another good source of learning materials are the
-files in `init/bin` and `init/lib`. These offer a good source of KorfLab coding
-style.
+MCB185 is a base level of skills and the exam is a base level
+assessment. Many projects require a more advanced level of programming.
+If you want more training problems, try solving some favorite
+bioinformatics programming problems in `06_PROGRAMMING.md`. Another good
+source of learning materials are the files in `init/bin` and `init/lib`.
+These offer a good source of KorfLab coding style.
 
 
 Work-Life Balance in Academic Science
