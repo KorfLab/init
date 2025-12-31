@@ -152,7 +152,7 @@ This task is designed to test your ability to parse complex text data into a
 tidy data structure.
 
 Write a program that creates a PWM of the Kozak consensus for the E. coli
-genome.
+genome. You can find this file in the `init/data` directory.
 
 - The input file is `*.gbff` format
 - There is an option to skip non-canonical starts
