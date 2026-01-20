@@ -22,14 +22,16 @@ def dehuman(s):
 
 parser = argparse.ArgumentParser(description='Find duplicate files.')
 parser.add_argument('path', type=str, metavar='<path>')
-parser.add_argument('--min', type=str, metavar='<min size>', default = '10M',
+parser.add_argument('--min', type=str, metavar='<min size>', default='10M',
 	help='minimum file size (may use K, M, G, T) [%(default)s]')
-parser.add_argument('--bytes', type=int, metavar='<bytes>', default = 128,
+parser.add_argument('--bytes', type=int, metavar='<bytes>', default=128,
 	help='number of bytes to read for pseudo-checksum [%(default)s]')
 parser.add_argument('--skip', type=str, metavar='<tokens>', nargs='+',
 	help='skip specific tokens, e.g. anaconda')
 parser.add_argument('--duplicates', action='store_true',
-	help='show all duplicte file paths and failed paths')
+	help='show all duplicate file paths and failed paths')
+parser.add_argument('--gzip', action='store_true',
+	help='report large, uncompressed files (also uses --min)')
 parser.add_argument('--denied', action='store_true',
 	help='show all paths that deny permission')
 parser.add_argument('--hidden', action='store_true',
@@ -52,6 +54,9 @@ small_space = 0
 check_files = 0
 check_space = 0
 
+min_nogz = dehuman(arg.min)
+nogz = {} # large and uncompressed
+
 
 # Index all files by their size
 size = {}
@@ -71,6 +76,8 @@ for path, subdirs, files in os.walk(arg.path):
 			continue
 		if not stat.S_ISREG(mode): continue
 		s = os.path.getsize(filepath)
+		if s >= min_nogz and not filepath.endswith('.gz'):
+			nogz[filepath] = s
 
 		# check for hidden files and directories (leading .)
 		if '/.' in filepath and not arg.hidden:
@@ -161,6 +168,12 @@ if arg.duplicates:
 		print(humanify(s))
 		for f in files:
 			print(f'\t{f}')
+
+# Large uncompressed report
+if arg.gzip:
+	print('\nUncompressed')
+	for path, s in nogz.items():
+		print(path, humanify(s))
 
 # Denied report
 if arg.denied:
