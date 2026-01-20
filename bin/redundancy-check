@@ -173,7 +173,7 @@ if arg.duplicates:
 if arg.gzip:
 	print('\nUncompressed')
 	for path, s in nogz.items():
-		print(path, humanify(s))
+		print('\t', path, humanify(s))
 
 # Denied report
 if arg.denied:
