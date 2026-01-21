@@ -34,8 +34,8 @@ There are also some directories with various files you may find useful.
 	- `kmer-tool` count and compare kmer frequencies in DNA
 	- `model-tester` creates and evaluates sequence models
 	- `mysbatch` mock sbatch for dev purposes
-	- `redundancy-check` look for duplicate files
 	- `seq-stats` report statistics about sequences in a FASTA file
+	- `space-waste` look for duplicate and uncommpressed files
 - `lib` some libraries
 	- `korflab.py` common bioinformatics functions in Python
 	- `FAlite.pm` ancient FASTA iterator in Perl

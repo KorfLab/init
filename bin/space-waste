@@ -20,16 +20,16 @@ def dehuman(s):
 	elif s.endswith('t') or s.endswith('T'): return int(s[:-1]) * 1e12
 	else: return int(s)
 
-parser = argparse.ArgumentParser(description='Find duplicate files.')
+parser = argparse.ArgumentParser(description='Find wasted space.')
 parser.add_argument('path', type=str, metavar='<path>')
 parser.add_argument('--min', type=str, metavar='<min size>', default='10M',
 	help='minimum file size (may use K, M, G, T) [%(default)s]')
 parser.add_argument('--bytes', type=int, metavar='<bytes>', default=128,
 	help='number of bytes to read for pseudo-checksum [%(default)s]')
 parser.add_argument('--skip', type=str, metavar='<tokens>', nargs='+',
-	help='skip specific tokens, e.g. anaconda')
+	help='skip specific tokens, e.g. conda, git')
 parser.add_argument('--duplicates', action='store_true',
-	help='show all duplicate file paths and failed paths')
+	help='show all duplicate file paths')
 parser.add_argument('--gzip', action='store_true',
 	help='report large, uncompressed files (also uses --min)')
 parser.add_argument('--denied', action='store_true',
@@ -54,7 +54,6 @@ small_space = 0
 check_files = 0
 check_space = 0
 
-min_nogz = dehuman(arg.min)
 nogz = {} # large and uncompressed
 
 
@@ -76,8 +75,6 @@ for path, subdirs, files in os.walk(arg.path):
 			continue
 		if not stat.S_ISREG(mode): continue
 		s = os.path.getsize(filepath)
-		if s >= min_nogz and not filepath.endswith('.gz'):
-			nogz[filepath] = s
 
 		# check for hidden files and directories (leading .)
 		if '/.' in filepath and not arg.hidden:
@@ -112,6 +109,9 @@ for path, subdirs, files in os.walk(arg.path):
 		size[s].append(filepath)
 		check_space += s
 		check_files += 1
+
+		if not filepath.endswith('.gz'): nogz[filepath] = s
+
 if arg.progress: print(file=sys.stderr)
 
 # Find duplicate files (1) by file size (2) by pseudo-checksum
