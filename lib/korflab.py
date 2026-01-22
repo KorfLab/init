@@ -485,6 +485,38 @@ def score_markov(model, seq):
 		score += mm[kmer]
 	return score
 
+########################
+## Multiple Alignment ##
+########################
+
+class malignment:
+	"""Stores and slices multiple alignments"""
+
+	def __init__(self, file=None, format=None):
+		if format != 'fasta': sys.exit('not supported yet')
+		self.names = []
+		self.seqs = []
+		for defline, seq in readfasta(file):
+			self.names.append(defline)
+			self.seqs.append(seq)
+
+		for i in range(1, (len(self.seqs))):
+			if len(seq[i-1]) != len(seq[i]): sys.exit('error')
+
+	def col(self, n):
+		"""retrieve a column, zero-based"""
+		s = []
+		for seq in self.seqs: s.append(seq[n])
+		return ''.join(s)
+
+	def coor(self, sid, cid):
+		"""retrieve a coordinate given a sequence id and column id"""
+		total = -1 # signifies before seq
+		for i in range(cid+1):
+			if self.seqs[sid][i] in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ': total += 1
+		return total
+			
+
 ######################
 ## Machine Learning ##
 ######################
