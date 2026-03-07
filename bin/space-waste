@@ -128,6 +128,7 @@ for s in sorted(size, reverse=True):
 	# Create a pseudo-checksum by looking at the head and tail of a file
 	pseudosum = {}
 	for filepath in size[s]:
+		if not os.path.exists(filepath): continue # file may have disappeared
 		with open(filepath, mode='rb') as fp:
 			head = fp.read(arg.bytes)
 			tail = None
