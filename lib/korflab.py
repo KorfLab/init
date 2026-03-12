@@ -257,6 +257,7 @@ def readsam(filename):
 	fp = getfp(filename)
 	for line in fp:
 		if line.startswith('@'): continue
+		if len(line) < 3: continue
 		yield SAM(line)
 	fp.close()
 
