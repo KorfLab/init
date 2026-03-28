@@ -6,8 +6,10 @@ import gzip
 import itertools
 import json
 import math
+import os
 import random
 import re
+import sqlite3
 import sys
 
 ####################
@@ -515,7 +517,7 @@ class malignment:
 		for i in range(cid+1):
 			if self.seqs[sid][i] in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ': total += 1
 		return total
-			
+
 
 ######################
 ## Machine Learning ##
@@ -573,3 +575,217 @@ def read_xml(fp):
 	contents = descend_tree(root, [])
 	if contents: data['has'] = contents
 	return data
+
+
+
+#######################
+## GFF-like features ##
+#######################
+
+class Feature:
+	"""represents a genomic feature"""
+	def __init__(self, f):
+		(sid, beg, end, ft, st, sc, ph, fid, pid, src, info) = f
+		self.seqid = sid
+		self.source = src
+		self.type = ft
+		self.beg = beg
+		self.end = end
+		self.score = sc
+		self.strand = st
+		self.phase = ph
+		self.fid = fid
+		self.pid = pid
+		self.info = info
+
+	def __str__(self):
+		return f'{self.type} {self.beg} {self.end} {self.strand}'
+
+class Gene:
+	"""represents a gene"""
+	def __init__(self, gf, txs):
+		self.seqid = gf.seqid
+		self.fid = gf.fid
+		self.beg = gf.beg
+		self.end = gf.end
+		self.strand = gf.strand
+		self.score = None # reserved for later
+		self.transcripts = txs
+
+	def __str__(self):
+		lines = []
+		lines.append(f'Gobj: {self.beg} {self.end}')
+		for tx in self.transcripts:
+			lines.append(f'  {tx}')
+			for ex in tx.exons:
+				lines.append(f'    {ex}')
+		return '\n'.join(lines)
+
+class Transcript:
+	def __init__(self, txf):
+		# from transcript feature
+		self.seqid = txf.seqid
+		self.beg = txf.beg
+		self.end = txf.end
+		self.strand = txf.strand
+		self.score = txf.score
+		self.fid = txf.fid
+		self.pid = txf.pid
+
+		# added to transcript
+		self.exons = []
+		self.introns = []
+		self.cdss = []
+		self.utr5s = []
+		self.utr3s = []
+		self.polya = None
+
+		# calculated later
+		self.is_coding = None
+		self.is_spliced = None
+		self.is_valid = None
+
+		# finalize function here
+		self.finalize()
+
+	def finalize(self):
+		# calculate self.is_coding
+		self.is_coding = True if self.cdss else False
+		# calculate self.is_spliced
+		self.is_spliced = True if self.introns else False
+
+	def __str__(self):
+		return f'TXobj: {self.seqid}:{self.beg}..{self.end}{self.strand}'
+
+###########################
+# GFF database functions ##
+###########################
+
+def create_database(db, fasta, gff3):
+	"""create a new instance of database"""
+
+	if os.path.exists(db): sys.exit(f'aborting: database {db} exists')
+	con = sqlite3.connect(db)
+	cur = con.cursor()
+
+	# sequences
+	cur.execute('CREATE TABLE sequence(seqid TEXT, seq TEXT, info TEXT)')
+	cur.execute('CREATE INDEX idx_seq ON sequence (seqid)')
+	for header, seq in readfasta(fasta):
+		f = header.split()
+		if len(f) == 1:
+			seqid = f[0]
+			info = ''
+		else:
+			seqid = f[0]
+			info = ' '.join(f[1:])
+		sql = f'INSERT INTO sequence VALUES ("{seqid}", "{seq}", "{info}")'
+		cur.execute(sql)
+
+	# features
+	cur.execute('CREATE TABLE feature(seqid TEXT, beg INTEGER, end INTEGER, type TEXT, strand TEXT, score NUMERIC, phase INTEGER, uid TEXT, pid TEXT, source TEXT, info TEXT)')
+	cur.execute('CREATE INDEX idx_sid ON feature (seqid)')
+	cur.execute('CREATE INDEX idx_fid ON feature (uid)')
+	cur.execute('CREATE INDEX idx_pid ON feature (pid)')
+	cur.execute('CREATE INDEX idx_typ ON feature (type)')
+	cur.execute('CREATE INDEX idx_src ON feature (source)')
+
+	grouping = 'ID', 'Parent'
+
+	for gff in readgff(gff3):
+		# populate grouping and att
+		info = {k:'' for k in grouping}
+		for tv in gff.attr.rstrip(';').split(';'):
+			tag, value = tv.split('=')
+			info[tag] = value
+
+		# create multiple records if there are multiple parents
+		parent = []
+		if 'Parent' in info:
+			for p in info['Parent'].rstrip(',').split(','): parent.append(p)
+		else: parent.append('')
+
+		# write data
+		if gff.score is None: gff.score = 'NULL'
+		if gff.phase is None: gff.phase = 'NULL'
+		uid = info['ID']
+		for pid in parent:
+			cur.execute(f'INSERT INTO feature VALUES("{gff.chrom}", {gff.beg}, {gff.end}, "{gff.type}", "{gff.strand}", {gff.score}, {gff.phase}, "{uid}", "{pid}", "{gff.source}", "{gff.attr}")')
+
+	con.commit()
+
+def get_seq(db, seqid, beg=None, end=None):
+	"""retrieve sequence or subsequence"""
+
+	if not os.path.exists(db): sys.exit(f'aborting: no database {db}')
+	con = sqlite3.connect(db)
+	cur = con.cursor()
+
+	if beg is None and end is None:
+		qseq = 'seq'
+	elif end is None:
+		qseq = f'substr(seq, {beg})'
+	elif beg is None:
+		qseq = f'substr(seq, 1, {end})'
+	else:
+		offset = beg
+		length = end - beg + 1
+		qseq = f'substr(seq, {offset}, {length})'
+
+	query = f'SELECT {qseq} FROM sequence WHERE seqid="{seqid}"'
+	seq = cur.execute(query).fetchone()[0]
+	return seq
+
+def get_features(db, seqid=None, ftype=None, source=None, fid=None, pid=None):
+	"""retrieve features with filters"""
+
+	if not os.path.exists(db): sys.exit(f'aborting: no database {db}')
+	con = sqlite3.connect(db)
+	cur = con.cursor()
+
+	where = []
+	if seqid:  where.append(f'seqid="{seqid}"')
+	if ftype:  where.append(f'type="{ftype}"')
+	if source: where.append(f'source="{source}"')
+	if fid:    where.append(f'fid="{fid}"')
+	if pid:    where.append(f'pid="{pid}"')
+	query = 'select * from feature';
+	if where: query += ' WHERE ' + ' and '.join(where)
+	for f in cur.execute(query).fetchall():
+		yield Feature(f)
+
+def get_seqfeats(db, seqid=None, ftype=None, source=None):
+	"""retrive sequences of features with filters"""
+
+	for f in get_features(db, seqid=seqid, ftype=ftype, source=source):
+		seq = get_seq(db, f.seqid, beg=f.beg, end=f.end)
+		yield seq
+
+def get_genes(db,  seqid=None, source=None, fid=None, pid=None):
+	"""retrieve all protein-coding genes"""
+
+	if not os.path.exists(db): sys.exit(f'aborting: no database {db}')
+	con = sqlite3.connect(db)
+	cur = con.cursor()
+
+	for genef in get_features(db, ftype='gene'):
+		# find all transcripts where pid == fid
+		txos = []
+		for txf in get_features(db, pid=genef.fid):
+			txo = Transcript(txf)
+			for f in get_features(db, pid=txf.fid):
+				if   f.type == 'exon': txo.exons.append(f)
+				elif f.type == 'intron': txo.introns.append(f)
+				elif f.type == 'CDS': txo.cdss.append(f)
+				elif f.type == 'five_prime_UTR': txo.utr5s.append(f)
+				elif f.type == 'three_prime_UTR': txo.utr3s.append(f)
+				else: sys.exit(f'unknown ftype for tx: {f.type}')
+
+			if len(txo.cdss) > 0: txo.is_coding = True
+			else: txo.is_coding = False
+
+			txo.is_spliced = True if txo.introns else False
+
+			txos.append(txo)
+		yield Gene(genef, txos)
+
