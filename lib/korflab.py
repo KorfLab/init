@@ -251,6 +251,7 @@ class SAM:
 		self.end = self.beg
 		for length, op in re.findall(r'(\d+)([MIDNSHP=X])', self.cigar):
 			if op in "MDN=X": self.end += int(length)
+		self.end -= 1
 
 	def __str__(self): return self.line # this is why read-only
 
@@ -259,6 +260,7 @@ def readsam(filename):
 	fp = getfp(filename)
 	for line in fp:
 		if line.startswith('@'): continue
+		if len(line) < 3: continue
 		yield SAM(line)
 	fp.close()
 
