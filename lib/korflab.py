@@ -634,20 +634,30 @@ class Transcript:
 		self.fid = txf.fid
 		self.pid = txf.pid
 
-		# added to transcript
+		# aggregated to transcript by Parent=
 		self.exons = []
+		self.cdss = []  # required for protein-coding transcripts
+
+		# typical features that may be explicitly annotated or inferred later
 		self.introns = []
-		self.cdss = []
 		self.utr5s = []
 		self.utr3s = []
-		self.polya = None
+		self.start_codon = None
+		self.stop_codon = None
 
-		# calculated later
+		# unusual things that must be explicitly annotated
+		self.selenocysteine = [] # positions of these unusual features
+
+		# inferred later
 		self.is_coding = None
 		self.is_spliced = None
 		self.is_valid = None
+		self.has_noncanonical_start = None
+		self.has_noncanonical_stop = None
+		self.has_noncanonical_splices = None
+		self.has_internal_stops = None
 
-		# finalize function here
+		# do sanity checks and make inferences...
 		self.finalize()
 
 	def finalize(self):
@@ -655,6 +665,7 @@ class Transcript:
 		self.is_coding = True if self.cdss else False
 		# calculate self.is_spliced
 		self.is_spliced = True if self.introns else False
+		# there is much to add...
 
 	def __str__(self):
 		return f'TXobj: {self.seqid}:{self.beg}..{self.end}{self.strand}'
@@ -703,13 +714,6 @@ def create_database(db, fasta, gff3, commit_every=100_000, verbose=False):
 		for tv in gff.attr.rstrip().rstrip(';').split(';'):
 			tag, value = tv.split('=')
 			info[tag] = value
-
-		if gff.type == 'mRNA':
-			print(gff)
-			print(info)
-			sys.exit('here')
-
-
 
 		# create multiple records if there are multiple parents
 		parent = []
