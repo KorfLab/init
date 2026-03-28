@@ -663,7 +663,7 @@ class Transcript:
 # GFF database functions ##
 ###########################
 
-def create_database(db, fasta, gff3):
+def create_database(db, fasta, gff3, commit_every=100_000, verbose=False):
 	"""create a new instance of database"""
 
 	if os.path.exists(db): sys.exit(f'aborting: database {db} exists')
@@ -681,8 +681,10 @@ def create_database(db, fasta, gff3):
 		else:
 			seqid = f[0]
 			info = ' '.join(f[1:])
+		if verbose: print(f'reading {seqid}', file=sys.stderr)
 		sql = f'INSERT INTO sequence VALUES ("{seqid}", "{seq}", "{info}")'
 		cur.execute(sql)
+		con.commit() # after each chrom, as memory may be high otherwise
 
 	# features
 	cur.execute('CREATE TABLE feature(seqid TEXT, beg INTEGER, end INTEGER, type TEXT, strand TEXT, score NUMERIC, phase INTEGER, uid TEXT, pid TEXT, source TEXT, info TEXT)')
@@ -694,12 +696,20 @@ def create_database(db, fasta, gff3):
 
 	grouping = 'ID', 'Parent'
 
-	for gff in readgff(gff3):
+	for i, gff in enumerate(readgff(gff3)):
+
 		# populate grouping and att
 		info = {k:'' for k in grouping}
-		for tv in gff.attr.rstrip(';').split(';'):
+		for tv in gff.attr.rstrip().rstrip(';').split(';'):
 			tag, value = tv.split('=')
 			info[tag] = value
+
+		if gff.type == 'mRNA':
+			print(gff)
+			print(info)
+			sys.exit('here')
+
+
 
 		# create multiple records if there are multiple parents
 		parent = []
@@ -713,6 +723,11 @@ def create_database(db, fasta, gff3):
 		uid = info['ID']
 		for pid in parent:
 			cur.execute(f'INSERT INTO feature VALUES("{gff.chrom}", {gff.beg}, {gff.end}, "{gff.type}", "{gff.strand}", {gff.score}, {gff.phase}, "{uid}", "{pid}", "{gff.source}", "{gff.attr}")')
+
+		# commit once in a while
+		if (i+1) % commit_every == 0:
+			if verbose: print(f'committing at {i+1}', file=sys.stderr)
+			con.commit()
 
 	con.commit()
 
@@ -763,7 +778,7 @@ def get_seqfeats(db, seqid=None, ftype=None, source=None):
 		seq = get_seq(db, f.seqid, beg=f.beg, end=f.end)
 		yield seq
 
-def get_genes(db,  seqid=None, source=None, fid=None, pid=None):
+def get_genes(db,  seqid=None, source=None, fid=None, pid=None, tx_tag='mRNA'):
 	"""retrieve all protein-coding genes"""
 
 	if not os.path.exists(db): sys.exit(f'aborting: no database {db}')
@@ -773,7 +788,7 @@ def get_genes(db,  seqid=None, source=None, fid=None, pid=None):
 	for genef in get_features(db, ftype='gene'):
 		# find all transcripts where pid == fid
 		txos = []
-		for txf in get_features(db, pid=genef.fid):
+		for txf in get_features(db, ftype=tx_tag, pid=genef.fid):
 			txo = Transcript(txf)
 			for f in get_features(db, pid=txf.fid):
 				if   f.type == 'exon': txo.exons.append(f)
@@ -781,7 +796,9 @@ def get_genes(db,  seqid=None, source=None, fid=None, pid=None):
 				elif f.type == 'CDS': txo.cdss.append(f)
 				elif f.type == 'five_prime_UTR': txo.utr5s.append(f)
 				elif f.type == 'three_prime_UTR': txo.utr3s.append(f)
-				else: sys.exit(f'unknown ftype for tx: {f.type}')
+				elif f.type == 'start_codon': pass
+				elif f.type == 'stop_codon': pass
+				else: print(f'skipping {f.type} in tx', file=sys.stderr)
 
 			if len(txo.cdss) > 0: txo.is_coding = True
 			else: txo.is_coding = False
