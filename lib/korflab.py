@@ -624,7 +624,7 @@ class Gene:
 		return '\n'.join(lines)
 
 class Transcript:
-	def __init__(self, txf):
+	def __init__(self, txf, correct_errors=False):
 		# from transcript feature
 		self.seqid = txf.seqid
 		self.beg = txf.beg
@@ -651,14 +651,37 @@ class Transcript:
 		# inferred later
 		self.is_coding = None
 		self.is_spliced = None
-		self.is_valid = None
+		self.is_canonical = None
 		self.has_noncanonical_start = None
 		self.has_noncanonical_stop = None
 		self.has_noncanonical_splices = None
 		self.has_internal_stops = None
 
-		# do sanity checks and make inferences...
+		# sanity checks and inferences...
+		self.check_exons()
+		self.check_splicing()
+		self.check_utr()
+		self.check_translation()
 		self.finalize()
+
+	def check_exons(self):
+		"""assess exons"""
+		pass
+	
+	def check_splicing(self):
+		"""assess introns and infer them if they are not annotated"""
+		pass
+	
+	def check_utr(self):
+		"""infer UTRs if they are not present"""
+		pass
+	
+	def check_translation(self):
+		"""assess cds for proper phase and translation"""
+		# start codon
+		# stop codon
+		# selenocysteine
+		pass
 
 	def finalize(self):
 		# calculate self.is_coding
@@ -800,8 +823,9 @@ def get_genes(db,  seqid=None, source=None, fid=None, pid=None, tx_tag='mRNA'):
 				elif f.type == 'CDS': txo.cdss.append(f)
 				elif f.type == 'five_prime_UTR': txo.utr5s.append(f)
 				elif f.type == 'three_prime_UTR': txo.utr3s.append(f)
-				elif f.type == 'start_codon': pass
-				elif f.type == 'stop_codon': pass
+				elif f.type == 'start_codon': pass # should not be passed
+				elif f.type == 'stop_codon': pass # should not be passed
+				# add selenocysteine
 				else: print(f'skipping {f.type} in tx', file=sys.stderr)
 
 			if len(txo.cdss) > 0: txo.is_coding = True
