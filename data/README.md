@@ -33,3 +33,8 @@ provided in several files.
 
 Their is a strong relationship between IMEter score and gene expression. The
 experimentally-assayed introns are in `db_IME_Rose_WT_introns.fa.gz`.
+
+## Other Stuff ##
+
+- BLOSUM matrices are in common usage, especially BLOSUM62
+- `so.obo.gz` is a dump of the sequence ontology
