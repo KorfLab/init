@@ -758,6 +758,17 @@ def create_database(db, fasta, gff3, commit_every=100_000, verbose=False):
 
 	con.commit()
 
+def get_seqs(db):
+	"""retrieve seqid, seq for entire databse"""
+
+	if not os.path.exists(db): sys.exit(f'aborting: no database {db}')
+	con = sqlite3.connect(db)
+	cur = con.cursor()
+
+	query = f'SELECT seqid FROM sequence'
+	seqids = [x[0] for x in cur.execute(query).fetchall()]
+	for seqid in seqids: yield seqid, get_seq(db, seqid)
+
 def get_seq(db, seqid, beg=None, end=None):
 	"""retrieve sequence or subsequence"""
 

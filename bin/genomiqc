@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+
+import argparse
+
+import korflab
+
+
+############################################################################
+# ACTIONS
+############################################################################
+
+def create_database(arg):
+	korflab.create_database(arg.db, arg.fasta, arg.gff3)
+
+def summarize(arg):
+	iupac_nt = 'ACGTRYMKWSBDHVNacgtrymkwsbdhvn'
+	gc_nt = 'GCgcSs'
+	rep_nt = 'Nacgtrymkwsbdhvn'
+	counts = {nt:0 for nt in iupac_nt} # all chromosomes
+	lengths = []
+	gcs = [] # GC composition where case doesn't matter
+	repeats = [] # repeat composition as learned from soft + hard masking
+	for sid, seq in korflab.get_seqs(arg.db):
+		lengths.append(len(seq))
+		nts = {nt:0 for nt in iupac_nt} # specific chromosome
+		for nt in iupac_nt: nts[nt] += seq.count(nt)
+		for nt in iupac_nt: counts[nt] += nts[nt] # add to total
+		
+		# GC
+		gccount = 0
+		for nt in gc_nt: gccount += nts[nt]
+		
+		# repeat
+		repcount = 0
+		for nt in rep_nt: repcount += nts[nt]
+		
+		print(sid, len(seq))
+		print(gccount, repcount, nts)
+	
+
+############################################################################
+# CLI
+############################################################################
+
+## parent parser
+parser = argparse.ArgumentParser()
+parser.add_argument('--db', required=True, metavar='<file.db>',
+	help='genome database file')
+sub = parser.add_subparsers(required=True, help='sub-commands')
+
+## create genome database
+s1 = sub.add_parser('create',
+	help='create a genome database from fasta and gff3 files')
+s1.add_argument('--fasta', metavar='<file.fa>', required=True,
+	help='genome fasta file, compressed ok')
+s1.add_argument('--gff3', metavar='<file.gff3>', required=True,
+	help='genome gff3 file, compressed ok')
+s1.add_argument('--source', metavar='<source>',
+	help='customize parsing based on download source')
+s1.set_defaults(func=create_database)
+
+## provide a high-level summary
+s2 = sub.add_parser('summarize', help='summarize genome')
+s2.set_defaults(func=summarize)
+
+## execute sub-command
+arg = parser.parse_args()
+arg.func(arg)
