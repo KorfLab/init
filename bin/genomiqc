@@ -25,18 +25,18 @@ def summarize(arg):
 		nts = {nt:0 for nt in iupac_nt} # specific chromosome
 		for nt in iupac_nt: nts[nt] += seq.count(nt)
 		for nt in iupac_nt: counts[nt] += nts[nt] # add to total
-		
+
 		# GC
 		gccount = 0
 		for nt in gc_nt: gccount += nts[nt]
-		
+
 		# repeat
 		repcount = 0
 		for nt in rep_nt: repcount += nts[nt]
-		
+
 		print(sid, len(seq))
 		print(gccount, repcount, nts)
-	
+
 
 ############################################################################
 # CLI
@@ -45,7 +45,7 @@ def summarize(arg):
 ## parent parser
 parser = argparse.ArgumentParser()
 parser.add_argument('--db', required=True, metavar='<file.db>',
-	help='genome database file')
+	help='genome database file (db precedes actions)')
 sub = parser.add_subparsers(required=True, help='sub-commands')
 
 ## create genome database
