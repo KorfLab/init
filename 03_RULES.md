@@ -3,95 +3,92 @@ Rules
 
 These might be called "best practices" except they are too important for that.
 
-- Rule #1: Create Dev Data
-- Rule #2: Everything is Portable
-- Rule #3: All Code in GitHub
-- Rule #4: Beautifully Simple
-- Rule #5: Refactoring Happens
-- Rule #6: Be a Scientist, not a Robot
+- Rule #1: Create Small Data
+- Rule #2: Develop in Parallel
+- Rule #3: Beautifully Simple
+- Rule #4: Refactoring Happens
+- Rule #5: Be a Scientist, not a Robot
 
-## Rule #1: Create Dev Data ##
+## Rule #1: Create Small Data ##
 
 >Measure twice, cut once
 
 Before you start on a project, the most important thing to do is to build a
-minimal dataset for development and testing. We call this our "dev data", "test
-set", or "debug set". Dev data is probably not a single file. You should have
-data that represents positive and negative controls. Dev data is sometimes
-created by hand, sometimes created synthetically, and sometimes sampled from
-real data. We use dev data for multiple purposes:
+minimal dataset for development and testing. We call this "small data" (as
+opposed to "big data". We may also call it "dev data", "test data", or "debug
+data". Small Data is probably not a single file: it should represent positive
+and negative controls. Small Data is sometimes created by hand, sometimes
+created synthetically, and sometimes sampled from real data. We use Small Data
+for multiple purposes:
 
 - Minimize debugging time
 - Functional tests
 - Tutorials
 
-Software development takes much more time than you expect. The debugging stage
-can be very long. In order to reduce the downtime between debugging sessions,
-we need a small data set that can be processed very quickly, and whose outputs
-are uncomplicated.
+Bioinfomatics software development and experiments take much more time than you
+expect. The iterative debugging stage can be very long. In order to reduce the
+downtime between debugging sessions, we need data that can be processed very
+quickly, and whose outputs are uncomplicated.
 
 Software changes over time. Even if we make no changes to our code, our
 software depends on other software, which may change silently. In order to
 ensure that our software continues to produce the same output as before, we
 must perform "functional tests" that automatically compare the current output
-to the previous, expected output. Dev data is used during automated testing.
+to the previous, expected output. Small Data is used during automated testing.
 
 When it comes time to distribute our software, there should be a tutorial that
-shows how to use the software. The dev data is useful again here.
+shows how to use the software. Small Data is useful again here.
 
-Making dev data can take some time. For example, let's imagine your project
+Making Small Data can take some time. For example, let's imagine your project
 involves RNA-seq on the human genome. What is the proper test set? Not the
 entire human genome and 10 RNA-seq libraries. The test set should fit neatly
 into the git repository where the code lives. Ideally, the entire repo is
-small. Under 100M is good. Under 10M is better. Creating a test set for an
-RNA-seq project means making a miniaturized version of the human genome and
-curating some reads that align to that part of the genome. Obviously, the
-region of the genome matters. You probably want some areas with high coverage
-and some areas with low coverage. It may take a week or more to create a proper
-set of files. And later, you may have to make a better one. It will be worth it
-in the long run. This part of our work is sort of like making reagents and
-calibrating instruments. It's a pain but must be done to speed up debugging
-time and improve reproducibility.
+small. Over 100M is bad. Under 10M is good. Creating Small Data for an RNA-seq
+project means making a miniaturized version of the human genome and curating
+some reads that align to that part of the genome. Obviously, the region of the
+genome matters. You probably want some areas with high coverage and some areas
+with low coverage. It may take a week or more to create a proper set of files.
+And later, you may have to make a better one. It will be worth it in the long
+run. This part of our work is sort of like making reagents and calibrating
+instruments. It's a pain but must be done to speed up debugging time and
+improve reproducibility.
 
-Some examples of Rule #1 data are in the `init/data` directory.
+Some examples of Rule #1 Small Data are in the `init/data` directory.
 
-## Rule #2: Everything Is Portable ##
+## Rule #2: Develop in Parallel ##
 
 >Working in one setting ensures irreproducibility
 
 Two very important words in science are _rigor_ and _reproducibility_. Science
 should be repeatable. One way to ensure that your work can be replicated by
-others is to simultaneously develop your software on multiple computers. This
-might be a laptop, desktop, cluster, cloud service, or a VM. If you're
-wondering how you can you run an analysis inside the minimal VM on your laptop
-when it lacks the 5 TB of free space needed... see Rule #1. If you are using
-only one computer, you are probably guaranteeing that whatever you're doing is
-not reproducible. As scientists, that's sort of unforgivable. Personally, I
-bounce between different systems on a daily basis.
+others is to simultaneously develop your software on multiple computers in
+parallel (e.g. laptop, desktop, cluster, cloud service, VM).
 
-- Use Miniforge (conda) to manage your software environment (where possible)
+If you're wondering how you can you run an analysis inside the minimal VM on
+your laptop when it lacks the 5 TB of data files required by the analysis...
+see Rule #1. If you are using only one computer, you are probably guaranteeing
+that whatever you're doing is not reproducible. As scientists, that's sort of
+unforgivable. Personally, I bounce between different systems on a daily basis.
+
+How does one Develop in Parallel in practice?
+
+- Use GitHub to manage your code and Small Data
+- Use Mini-forge (conda) to manage your software environment (where possible)
 - Never, never, never hard-code paths
 
-## Rule #3: All Code in GitHub ##
-
-All of the code you write should be managed in a GitHub repository. Generally,
-there is no need to make it private.
-
-Code should be documented in Markdown format. Make your Markdown files look
-like final versions of documents and not just pre-processor code for HTML.
-
-Every project should have a small sample of data with your programs for testing
-purposes (see Rule #1).
-
-Programs belong in git repos. Experimental data should **not** be stored in git
-repos. For this reason, your programs and data should be in very different
-places on whatever computer you're using.
-
-If you're a programmer of some kind, which you must be to be in the lab, your
+All of the code you write should be managed in GitHub repositories. Generally,
+there is no need to make them private. GitHub isn't the place where you publish
+your data after you complete your experiments. It's where you work ever day. If
+you're a programmer of some kind, which you must be to be in the lab, your
 programming activity is part of your CV. Your GitHub profile and activity are
 therefore part of your CV.
 
-## Rule #4: Beautifully Simple ##
+Big Data should **not** be stored in git repos. For this reason, your programs
+and data should be in very different places on whatever computer you're using.
+Of course, you should never hard-code paths. Use a softlink or environment
+variable to abstract your Big Data locations on different machines.
+
+## Rule #3: Beautifully Simple ##
 
 A programming project has many facets.
 
@@ -137,7 +134,7 @@ a first language. If you think scientific writing is supposed to demonstrate
 your _erudition_, you are wrong. Scientific writing is like code. It's not for
 you, but for a less educated audience.
 
-## Rule #5: Refactoring Happens ##
+## Rule #4: Refactoring Happens ##
 
 >Sometimes you don't know how to start until you get to the end
 
@@ -153,7 +150,7 @@ This doesn't mean you're encouraged to write shitty code. You should always
 strive to write code you are proud of. If you can't show your code to the PI
 and say "isn't this great?" then re-write it and make it great.
 
-## Rule #6: Be a Scientist not a Robot ##
+## Rule #5: Be a Scientist, not a Robot ##
 
 >Copy-paste-modify is the enemy of expertise
 

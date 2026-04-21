@@ -105,7 +105,7 @@ You are expected to do some work on your personal computer(s) (see Rule #2).
 Most operating systems have directories for Desktop, Documents, Downloads, etc.
 Where should you put your code and experiments? All of my Git repositories are
 inside a Code directory. Experiments with that code are generally in a `build`
-directory, since that is ignored by Git.
+directory, since that is generally ignored in `.gitignore`.
 
 ```
 Code/
@@ -159,13 +159,14 @@ These "rules" apply to all languages:
 - Other Languages
 	- C++: `std::count << "C is better" << std::endl;`
 	- C#: `Console.WriteLine("See Java");`
-	- Go: `fmt.Println("Yes, please")`
+	- Go: `fmt.Println("Hmm, maybe")`
 	- Java: `system.out.println("hell.no.thank.you");`
 	- Javascript: `console.log("no, not for bioinformatics");`
 	- Julia: `print("it was swell but the swelling went down")`
 	- Lua: `print("Really? Let's discuss!")`
 	- Perl: `print "sometimes you have to leave the past behind";`
-	- Rust: `printlin!("Maybe. Let's discuss");`
+	- Rust: `printlin!("Good idea. Let's discuss");`
+	- Zig: `stdout.writeAll("Oooh");`
 
 
 Plase Don't
@@ -175,7 +176,7 @@ Since we just covered some best practices, we might as well talk about some
 worst practices.
 
 - Don't copy-paste code
-- Don't indent with spaces
+- Don't indent with spaces unless the language demands it
 - Don't run a job on a cluster without estimating resources
 - Don't attach large files
 - Don't use pixel graphics
@@ -222,7 +223,7 @@ There are 5 resources for every job.
 If you're about to run a large job on a cluster and don't have an accurate
 estimate of how much each resource your job will take, you don't have any
 buisness running the job. How do you estimate these? Using `top` or
-`/usr/bin/time` with dev data (see Rule #1).
+`/usr/bin/time` with Small Data (see Rule #1).
 
 ## Don't attach large files ##
 

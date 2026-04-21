@@ -30,8 +30,9 @@ There are also some directories with various files you may find useful.
 	- `data-faker` creates synthetic exons and introns for testing
 	- `data-shrinker` genomic dataset minimizer
 	- `fasta-demo` increasingly sophisticated ways to read FASTA files
+	- `fastgff` draft example of using sqlite3 to manage FASTA and GFF3
 	- `fq-faker` sample fake reads from a sequence
-	- `kmer-tool` count and compare kmer frequencies in DNA
+	- `kmer-gizmo` count and compare kmer frequencies in DNA
 	- `model-tester` creates and evaluates sequence models
 	- `mysbatch` mock sbatch for dev purposes
 	- `seq-stats` report statistics about sequences in a FASTA file

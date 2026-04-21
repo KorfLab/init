@@ -66,37 +66,37 @@ few offspring  | works     | babes die |
                 -----------|-----------
 ```
 
-In society, successful people are generally either scouts or workers. Other
-strategies are less successful.
+In society, successful people are generally either explorers or exploiters.
+Other strategies are less successful.
 
 ```
                  high gtd | low gtd
-                ----------|---------
-high inventive | madness  | scout   |
-               |----------|---------|
-low inventive  | worker   | bench   |
-                ----------|---------
+                ----------|----------
+high inventive | madness  | explorer |
+               |----------|----------|
+low inventive  | exloiter | bench    |
+                ----------|----------
 ```
 
-A scout is a high risk, high reward occupation. We need scouts to explore the
-unknown. Many will not succeeed, but the few who do are worth the expense.
-Scouts are often not good at menial labor or routine tasks. They need novelty
-and ownership. That said, scouts have to survive training, which involves
-unexciting tasks.
+An explorer is a high risk, high reward occupation. We need explorers to
+venture into the unknown. Many will not succeeed, but the few who do are worth
+the expense. Explorers are often not good at menial labor or routine tasks.
+They need novelty and ownership. That said, explorers have to survive training,
+which involves unexciting tasks.
 
-A worker is a lower risk, lower reward occupation. Someone has to stay at home
-and do the daily chores be they farming, cooking, raising the next generation,
-or defending against enemies. A worker takes pride in a job well done. Workers
-also solve problems in inventive ways but they take more pride in doing a good
-job than in being inventive.
+An exploiter (worker) is a lower risk, lower reward occupation. Someone has to
+stay at home and do the daily chores be they farming, cooking, raising the next
+generation, or defending against enemies. A worker takes pride in a job well
+done. Workers also solve problems in inventive ways but they take more pride in
+doing a good job than in being inventive.
 
 The person who has lots of ideas and thinks they can get them all done is
-insane. One cannot simultaneously be a scout and a worker, and the attempt will
-end in madness (for example, the PI of this lab).
+insane. One cannot simultaneously be an explorer and an exploiter, and the
+attempt will end in madness (for example, the PI of this lab).
 
 A person who doesn't have ideas and doesn't get anything done is currently on
-the bench, not in the game. There are several reasons why a person might be on
-the bench.
+the bench, and not in the game. There are several reasons why a person might be
+on the bench.
 
 - Novice: insufficient skill to be useful, requires more training
 - Recuperating: healing from injuries, requires time
