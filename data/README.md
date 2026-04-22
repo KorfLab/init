@@ -6,8 +6,9 @@ Mostly "Rule #1" data
 ## 1 Percent Genomes ##
 
 A few of the earliest Eukaryotic genomes sequenced are provided shrunken down
-to 1 percent. Each has a FASTA file of the genome and a GFF3 describing the
-genes (and spliced RNA-seq observations).
+to 1 percent (the first 1% of each chromosome and its genes). Each has a FASTA
+file of the genome and a GFF3 describing the genes (and spliced RNA-seq
+observations).
 
 - A. thaliana
 	- `at1pct.fa.gz`
@@ -18,6 +19,14 @@ genes (and spliced RNA-seq observations).
 - D. melanogaster
 	- `dm1pct.fa.gz`
 	- `dm1pct.gff3.gz`
+
+The human data comes from GRCh38 and gencode primary assembly and annotation,
+but only chromosomes 16-20. This set represents 243 protein-coding genes in a
+small-ish amount of sequence.
+
+- H. sapiens chromosomes
+	- `hs1pct.fa.gz`
+	- `hs1pct.gff3.gz`
 
 ## E. coli K-12 ##
 
