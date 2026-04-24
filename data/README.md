@@ -22,7 +22,7 @@ observations).
 
 The human data comes from GRCh38 and gencode primary assembly and annotation,
 but only chromosomes 16-20. This set represents 243 protein-coding genes in a
-small-ish amount of sequence.
+small-ish amount of sequence. RNA-seq data is not yet provided.
 
 - H. sapiens chromosomes
 	- `hs1pct.fa.gz`
