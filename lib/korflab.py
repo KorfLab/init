@@ -814,7 +814,7 @@ def get_seqfeats(db, seqid=None, ftype=None, source=None):
 
 	for f in get_features(db, seqid=seqid, ftype=ftype, source=source):
 		seq = get_seq(db, f.seqid, beg=f.beg, end=f.end)
-		yield seq
+		yield f, seq
 
 def get_genes(db,  seqid=None, source=None, fid=None, pid=None, tx_tag='mRNA'):
 	"""retrieve all protein-coding genes"""

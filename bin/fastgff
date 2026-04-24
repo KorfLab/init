@@ -23,9 +23,12 @@ def get_features(arg):
 		# change to gff
 
 def get_seqfeats(arg):
-	for s in korflab.get_seqfeats(arg.db, arg.chrom, arg.ftype, arg.source):
-		print(s)
-		# change to fasta
+	for n, (f, s) in enumerate(korflab.get_seqfeats(arg.db, arg.chrom,
+			arg.ftype, arg.source)):
+		if arg.plus and f.strand == '-' : s = korflab.anti(s)
+		print(f'>{n} {f.type} {f.beg}-{f.end}{f.strand}')
+		for i in range(0, len(s), 80):
+			print(s[i:i+80])
 
 def get_genes(arg):
 	for gene in korflab.get_genes(arg.db):
