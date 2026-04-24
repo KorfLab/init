@@ -46,4 +46,5 @@ experimentally-assayed introns are in `db_IME_Rose_WT_introns.fa.gz`.
 ## Other Stuff ##
 
 - BLOSUM matrices are in common usage, especially BLOSUM62
+- `pfamAseed.gz` first 52 records of Pfam-A.seed (STOCKHOLM format)
 - `so.obo.gz` is a dump of the sequence ontology
