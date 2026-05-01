@@ -27,6 +27,7 @@ Expectations
 ## Mentee Expectations ##
 
 - Communication
+	- **READ ALL LAB DOCUMENTS** (every fucking word, twice)
 	- Ask questions frequently
 	- Respond quickly to requests
 	- Go to lab meetings
