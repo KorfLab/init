@@ -34,8 +34,8 @@ plain-text editor, not merely a source format for HTML pre-processors.
 
 - **Performance First:** Prioritize zero-allocation parsers, zero-copy byte 
   slices (`&[u8]`), and chunked memory-mapped execution vectors (`mmap`).
-- **Idiomatic Optimization:** Lean heavily on iterator combinators, standard 
-  `BufReader` abstractions, and crates like `Rayon` for auto-parallelism.
+- **Idiomatic Optimization:** Lean heavily on iterator combinators and standard 
+  `BufReader` abstractions.
 - **Compiler Compliance:** Fix all lifetime, ownership, and borrow-checking 
   An execution error in safe Rust code is forbidden. The use of `unsafe` blocks 
   is strictly barred unless parsing raw low-level binary packed structures.
