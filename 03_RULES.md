@@ -2,11 +2,11 @@ Rules
 =====
 
 We no longer write computer programs line-by-line. AI does that work for us.
-What are the best practices in this new era? We could be very lazy. For
+What are the best practices in this new era? AI allows us to be very lazy. For
 example, we could prompt AI to: "make a program that does low complexity
 filtering on DNA" and AI would probably do a good job. However, instead of
 being lazy and being satisfied with _good_, what if we used AI to strive for
-_perfect_? It was too hard to do that in the past, but with AI doing some of
+_perfect_? It was impracticle to do that in the past, but with AI doing some of
 the heavy lifting, perhaps reaching for the stars is not just a stated goal
 that gets us on the roof, but an actual expectation.
 
@@ -22,18 +22,19 @@ this:
 - Build complex things from simple building blocks
 - Ensure the complex things work as designed by replication
 
-There is nothing new here. All of these things were true long before AI. What's
-different about today is that we no longer write all of the code ourselves.
-That release of responsibility prompts us to state our goals more ephatically
-and ensure their completeness more rigorously.
+There is nothing new here. All of these things were in practice long before AI.
+What's different about today is that we no longer write all of the code
+ourselves. That release of responsibility prompts us to state our goals more
+ephatically and examine our progress more rigorously.
 
 [^1]: Of course axiom-based component-driven engineering also spells out ABCDE.
 But ABCDE is too big of a mouthful. I could equally have named ACE "axiomatic
-component engineering" and not have this issue. But really, I did like that it
-matches ABCDE. Further, when gaming, I often use the tag "Ace", which is not a
-reference to my ability, but a shorthand of "acetylene". However, some people
-were pronouncing this as "ace tylene" and I couldn't have that, so shortened it
-to "ace" and now my gaming tag and coding philosophy have neatly merged.
+component engineering" and not have this issue. But really, I do like that it
+matches ABCDE, so it stays. Further, when gaming, I often use the tag "Ace",
+which is not a reference to my ability, but a shorthand of "acetylene".
+However, some people were pronouncing this as "ace tylene" and I couldn't have
+that, so shortened it to "ace", and now my gaming tag and coding philosophy
+have neatly merged.
 
 ### Axiom-Based
 
@@ -57,7 +58,7 @@ have specified.
 
 Computers are very complex things. For example, nobody understands the entirety
 of an operating system. And yet, operating systems are made from many simple
-components, each of which can be understood. For example, one might know
+components, each of which can be fully understood. For example, one might know
 precisely the inputs, outputs, and error conditions of a function that computes
 a factorial. The input is a non-negative intger. The output is a positive
 integer. That's 5th grade math. But the factorial function can easily result in
@@ -65,13 +66,13 @@ huge numbers that overflow typical integer and floating point representations.
 Consequently, building a factorial function inside a computer requires a little
 bit more knowledge than 5th grade math. A developer who doesn't understand
 mathematical precision and numerical limits may end up making software that
-doesn't meet out quest for perfection.
+falls short of our quest for perfection.
 
 A component-driven mindset is one where you build small pieces, prove those
 work as intended (axioms), and then connect them to each other to build complex
 systems. We do not leave it up to AI to make important decisions for us. We do
 not allow AI to take shortcuts or to hallucinate. We provide hard guard rails
-on simple **components we fully understand**.
+on **simple components we fully understand**.
 
 ### Engineering
 
@@ -86,25 +87,25 @@ is also inherently a team-based activity. Very few things of value are
 engineered by a single person. When it comes time to write axioms and their
 tests, a diverse team will perform much better than a maverick flying solo.
 
-In a bioinformatics context, we expect our programs to be run by scientists on
-various *nix platforms using a CLI. Our target audience is smart, but possibly
-uniformed users who are likely in a rush. As such, the software must work on
-multiple systems and must be packaged with tutorials that cover typical usage
-scenarios. Consequently, we must **build our software on multiple systems** and
-interact with scientists to get feedback.
+In a bioinformatics context, we expect our programs to be run by scientists, on
+various *nix platforms, using a CLI in some kind of automated workflow. Our
+target audience is smart, usually in a rush, and probably under-educated in the
+nuances of the IT world they find themselves in. As such, the software must
+work on multiple systems, be packaged with tutorials that cover typical usage
+scenarios, and follow community standards for input/output. In order to achieve
+these goals, we must **build/deploy our software on multiple systems**.
 
 What _exactly_ does "multiple systems" mean? It means more than one computer,
 for certain. Developing all of your code on one computer ensures it will break
 on another. "Multiple" also means different people, different languges, and
 different AI agents. If two languages/people/environments/etc produce different
 outputs, the spec is too brittle. The time to work at the "multiple" level is
-from the beginning, not taped on as an afterthought.
+from the beginning, not stapled on as an afterthought.
 
 ## ACE In Practice ##
 
-I want to provide exercises that put you in the correct mindset to follow the
-ACE philosophy. These examples are under development and will be featured in
-the reboot of MCB185.
+I want to provide exercises that put you in the ACE mindset. These examples are
+under development and will be featured in the reboot of MCB185 (Winter 2027).
 
 ------------------------------------------------------------------------------
 
