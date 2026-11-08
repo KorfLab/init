@@ -1,39 +1,21 @@
 Computer Setup
 ==============
 
-We do science and write code in a Unix/Linux environment.
+We do science and build tools in a Unix/Linux environment.
 
 ## Unix/Linux ##
 
-Most professional bioinformatics is done in a Unix/Linux environment. While
-Windows now has built-in support for Linux (WSL), it's generally better to work
-inside a Linux virtual machine (VM). There are other Unix CLI environments like
-Cygwin, and Gitbash for Windows. They generally work most of the time.
+Most professional bioinformatics is done in a Unix/Linux environment. All of
+the high performance computing on campus is Linux-based. You must become adept
+in using the Unix CLI for running programs and managing files.
 
-Mac users have Unix built in (Darwin), and typically don't use VMs. By default,
-MacOS does not install the developer tools, so you'll have to do that manually
-to have programs like `git` by doing: `xcode-select --install`.
+Your personal computer is probably running Mac or Windows. Macs have Unix built
+in. Windows users should install Linux via WSL or install Linux in a Virtual
+Machine.
 
-All of the clusters on campus run Linux. At some point your computational needs
-will exceed your personal computer and you will need to use a cluster, which
-means a Unix-like CLI.
+## AI Assitance ##
 
-To install a local CLI environment, you can:
-
-- Buy a Mac
-- Install Linux on an older PC (e.g. a $100 used laptop)
-- Install VirtualBox on PC and run some Linux distro (e.g. Lubuntu)
-- Install Cygwin on PC
-- Use the Linux environment in Windows
-
-Modify your login script (see `init/etc/profile` for inspiration).
-
-Use `top` or `htop` to monitor resources live. Prepend `/usr/bin/time -v` to
-examine resources after a job is done. The normal `time` command doesn't do
-this. You may have to install `/usr/bin/time` via conda.
-
-If `git` asks for you personal access token again and again, use the following
-command to make it persist: `git config --global credential.helper store`.
+Use omp to turn your terminal into your coding agent.
 
 ## Hive ##
 
@@ -54,10 +36,6 @@ How can you determine what resources will be required without running the job
 in the first place? By doing experiments on a smaller scale and observing what
 happens as the scale increases. To observe the resources used, prepend
 `/usr/bin/time -v` to your job (which may not be installed by default).
-
-For testing purposes, you may find `bin/mysbatch` useful for running mock slurm
-jobs on the cluster. There is an example slurm file in
-`data/sbatch-example.slurm`.
 
 Once you are running jobs on the cluster, `squeue --me` is how you see the
 status of your jobs (running, queued, etc). You can also view all the other

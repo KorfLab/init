@@ -1,7 +1,90 @@
 Rules
 =====
 
-These might be called "best practices" except they are too important for that.
+We no longer write computer programs line-by-line. AI does that work for us.
+What are the best practices in this new era? We can be very lazy. For example,
+we can prompt AI to: "make a program that does low complexity filtering on DNA"
+and AI would probably do a good job. However, instead of being lazy and being
+satisfied with _good_, what if we used AI to strive for _best_? What if we aim
+higher than due dilligence and reach for perfection? It was too hard to do that
+in the past, but with AI doing some of the lifting, perhaps we can reach beyond
+our limitations.
+
+## The ACE Paradigm ##
+
+In my research group, we write software by following a philosophy I call
+**ACE**: axiom-based, component-driven engineering (yes, this also happens to
+spell out ABCDE, but I'm not going to go around telling people to follow
+ABCDE). This is explained in greater detail below, but the TL;DR reads like
+this:
+
+- Break up a complex problem into simple problems
+- Define the truths (input/output) of the simple problems
+- Instruct AI to create simple building blocks with our truths as guardrails
+- Build complex things from simple building blocks
+
+### Axiom-Based
+
+Axioms are our truths. For example, if we are building tools for sequence
+analysis, the letters of DNA and protein are axioms. Of course, there are many
+more. To make sure axioms stay true, we write tests that prove them to be true.
+Note that I wrote **we write tests**. AI does not write our axioms or our
+axiomatic tests: we do. One line at a time.
+
+In ACE, the first word is **Axiom**. It must be a very important word if it
+comes first. Not only is the word important, the act of defining our axioms is
+what should happen first. If the goal is to "build a complexity filter" the
+first thing you do is to define the axioms yourself. If you don't know what a
+complexity filter is or what it is used for, then you have no business building
+the software until such time as you can state the axiomatic truths. What
+_exactly_ are the axioms in this example? Sequences, window sizes, entropy
+thresholds, and outputs that prove that the algorithm behaves _exactly_ as we
+have specified.
+
+### Component-Driven
+
+Computers are very complex things. Nobody understands the entirety of an
+operating system. However, one might know precisely the inputs, outputs, and
+error conditions of a particular function. For example, a function that
+computes the factorial of a number must be given non-negative integers as
+input. The output is a positive integer. Factorials can easily result in huge
+numbers that overflow typical integers and floating point representations.
+Writing something as simple as a factorial function in a computer presupposes
+you have some notion of mathematical precision and numerical limits inside a
+computer. If you don't, you don't have any business writing the function (or
+prompting it into existence) until such time as you do.
+
+A component-driven mindset is one where you build small pieces, prove those
+work as intended (axioms), and then connect them to each other to build complex
+systems. We do not leave it up to AI to make important decisions for us. We do
+not allow AI to take shortcuts or to hallucinate. We provide hard guard rails
+on small problems (components) that **we fully understand**.
+
+### Engineering
+
+Even if we are not writing software one line at a time, prompting is still a
+form of engineering. There is no vibe coding anymore than there is vibe
+sciencing. Neither engineering nor science was founded on laziness, and so it
+shall remain on my watch.
+
+The practice of engineering is an unending loop of designing, prototyping,
+testing, and refining. Iteration is natural. Failure is expected. Engineering
+is also inherently a team-based activity. Very few things of value are
+engineered by a single person. When it comes time to write axioms and their
+tests, a diverse team will perform much better than a maverick flying solo.
+
+## ACE In Practice ##
+
+I want to provide exercises that put you in the correct mindset to follow the
+ACE paradigm. These examples do not yet exist.
+
+------------------------------------------------------------------------------
+
+## Legacy Rules ##
+
+Before the ACE Paradigm we had 5 Rules. These rules are still in effect, but
+today there is less emphasis on how to program and more emphasis on how to
+test.
 
 - Rule #1: Create Small Data
 - Rule #2: Develop in Parallel
@@ -9,7 +92,7 @@ These might be called "best practices" except they are too important for that.
 - Rule #4: Refactoring Happens
 - Rule #5: Be a Scientist, not a Robot
 
-## Rule #1: Create Small Data ##
+### Rule #1: Create Small Data
 
 >Measure twice, cut once
 
@@ -55,7 +138,7 @@ improve reproducibility.
 
 Some examples of Rule #1 Small Data are in the `init/data` directory.
 
-## Rule #2: Develop in Parallel ##
+### Rule #2: Develop in Parallel
 
 >Working in one setting ensures irreproducibility
 
@@ -88,7 +171,7 @@ and data should be in very different places on whatever computer you're using.
 Of course, you should never hard-code paths. Use a softlink or environment
 variable to abstract your Big Data locations on different machines.
 
-## Rule #3: Beautifully Simple ##
+### Rule #3: Beautifully Simple
 
 A programming project has many facets.
 
@@ -134,7 +217,7 @@ a first language. If you think scientific writing is supposed to demonstrate
 your _erudition_, you are wrong. Scientific writing is like code. It's not for
 you, but for a less educated audience.
 
-## Rule #4: Refactoring Happens ##
+### Rule #4: Refactoring Happens
 
 >Sometimes you don't know how to start until you get to the end
 
@@ -150,7 +233,7 @@ This doesn't mean you're encouraged to write shitty code. You should always
 strive to write code you are proud of. If you can't show your code to the PI
 and say "isn't this great?" then re-write it and make it great.
 
-## Rule #5: Be a Scientist, not a Robot ##
+### Rule #5: Be a Scientist, not a Robot
 
 >Copy-paste-modify is the enemy of expertise
 

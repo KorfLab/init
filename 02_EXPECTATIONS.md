@@ -31,7 +31,6 @@ Expectations
 	- Ask questions frequently
 	- Respond quickly to requests
 	- Go to lab meetings
-	- Host subgroup meetings (graduates)
 	- Meet with the PI regularly (standing or on request)
 - Science
 	- Choose a project that interests them (when possible)
@@ -44,39 +43,29 @@ Expectations
 - Programming
 	- Use GitHub regularly
 	- Work in a Unix command-line interface
-	- Program in Python and possibly other languages
 
-## Programming and Self-Motivation Required ##
+## Domain Knowledge and Self-Motivation Required ##
 
 Most scientists are do-gooders who want to be useful. In a molecular biology
 lab, you can be useful immediately: there are dishes to wash, solutions to
 prepare, and instrumments you can learn to use with a week of training. There
-are no such tasks here. In order to be useful in this lab, you need to be at
-least an intermediate level programmer. Here are some things you need to be
-able to do:
+is no menial labor here because we work with computers, and anything simple is
+easily automated. In order to be useful in this lab, you need a working
+vocabulary of molecular biology, bioinformatics, and software engineering. As a
+junior researcher, you probably don't have this knowledge now. Here's what you
+need to do:
 
-- Work in a Unix/Linux CLI to run programs and manage files
-- Read and write text files
-- Use a command line interface (e.g. argparse in Python)
-- Build and navigate arbitrarily nested data structures
+- Be a self-motivated self-learner (use AI to learn, not to do)
+- Manage files and run programs in a Unix CLI
+- Be obsessively organized and be able to express that in clean Markdown
+- Understand how typical files are structred (e.g. a GIF vs. source code)
+- Understand how bioinformatics files are structured (e.g. GenBank flat file)
+- Be suspicous of _everything_
 
-To gain these skills, you can take my course MCB185 either officially or
-on your own (https://github.com/iankorf/MCB185). Also try
-`06_PROGRAMMING.md`. To test yourself try taking the KorfLab
-Bioinformatics Exam in `07_EXAM.md`.
-
-In addition to programming, you need to be self-motivated. I'm not the kind of
-PI who checks in on you constantly. I make myself available to students for
-several hours per week. If we haven't had a recent meeting, it's 100% your
-fault. I will help you every step of the way on just about anything you want
-help on, but you have to ask.
-
-MCB185 is a base level of skills and the exam is a base level
-assessment. Many projects require a more advanced level of programming.
-If you want more training problems, try solving some favorite
-bioinformatics programming problems in `06_PROGRAMMING.md`. Another good
-source of learning materials are the files in `init/bin` and `init/lib`.
-These offer a good source of KorfLab coding style.
+I'm not the kind of PI who checks in on you constantly. I make it very easy for
+you to schedule time with me. If we haven't had a recent 1-on-1 meeting, it's
+mostly your fault. I will help you every step of the way on just about anything
+you want help on, but only after you open the door and take a step through.
 
 
 Work-Life Balance in Academic Science
