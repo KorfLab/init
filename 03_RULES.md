@@ -8,9 +8,9 @@ and AI would probably do a good job. However, instead of being lazy and being
 satisfied with _good_, what if we used AI to strive for _best_? What if we aim
 higher than due dilligence and reach for perfection? It was too hard to do that
 in the past, but with AI doing some of the lifting, perhaps we can reach beyond
-our limitations.
+our personal limitations.
 
-## The ACE Paradigm ##
+## ACE in Theory ##
 
 In my research group, we write software by following a philosophy I call
 **ACE**: axiom-based, component-driven engineering (yes, this also happens to
@@ -19,24 +19,25 @@ ABCDE). This is explained in greater detail below, but the TL;DR reads like
 this:
 
 - Break up a complex problem into simple problems
-- Define the truths (input/output) of the simple problems
-- Instruct AI to create simple building blocks with our truths as guardrails
+- Define the truths of the simple problems
+- Create simple building blocks with our truths as guardrails
 - Build complex things from simple building blocks
+- Ensure the complex things work as designed by replication
 
 ### Axiom-Based
 
-Axioms are our truths. For example, if we are building tools for sequence
-analysis, the letters of DNA and protein are axioms. Of course, there are many
-more. To make sure axioms stay true, we write tests that prove them to be true.
-Note that I wrote **we write tests**. AI does not write our axioms or our
-axiomatic tests: we do. One line at a time.
-
 In ACE, the first word is **Axiom**. It must be a very important word if it
 comes first. Not only is the word important, the act of defining our axioms is
-what should happen first. If the goal is to "build a complexity filter" the
-first thing you do is to define the axioms yourself. If you don't know what a
-complexity filter is or what it is used for, then you have no business building
-the software until such time as you can state the axiomatic truths. What
+what should happen first. Axioms are our truths. For example, if we are
+building tools for sequence analysis, the letters of DNA and protein are
+axioms. Of course, there are many more. To make sure axioms stay true, we write
+tests that prove them to be true. Note that I wrote **we write tests**. AI does
+not write our axioms or our axiomatic tests: we do. One line at a time.
+
+If your goal is to "build a complexity filter" the first thing you do is to
+define the axioms yourself. If you don't know what a complexity filter is or
+what it is used for, then you have no business building the software until such
+time as you can state the axiomatic truths behind a complexity filter. What
 _exactly_ are the axioms in this example? Sequences, window sizes, entropy
 thresholds, and outputs that prove that the algorithm behaves _exactly_ as we
 have specified.
@@ -44,28 +45,29 @@ have specified.
 ### Component-Driven
 
 Computers are very complex things. Nobody understands the entirety of an
-operating system. However, one might know precisely the inputs, outputs, and
-error conditions of a particular function. For example, a function that
-computes the factorial of a number must be given non-negative integers as
-input. The output is a positive integer. Factorials can easily result in huge
-numbers that overflow typical integers and floating point representations.
-Writing something as simple as a factorial function in a computer presupposes
-you have some notion of mathematical precision and numerical limits inside a
-computer. If you don't, you don't have any business writing the function (or
-prompting it into existence) until such time as you do.
+operating system. And yet, operating systems are made from many simple
+components, each of which can be understood. For example, one might know
+precisely the inputs, outputs, and error conditions of  a function that
+computes a factorial. The input is a non-negative intger. The output is a
+positive integer. That's 5th grade math. But the factorial function can easily
+result in huge numbers that overflow typical integer and floating point
+representations. Consequently, building a factorial function inside a computer
+requires a little bit more knowledge than 5th grade math. A developer who
+doesn't understand mathematical precision and numerical limits may end up
+making software that doesn't meet out quest for perfection.
 
 A component-driven mindset is one where you build small pieces, prove those
 work as intended (axioms), and then connect them to each other to build complex
 systems. We do not leave it up to AI to make important decisions for us. We do
 not allow AI to take shortcuts or to hallucinate. We provide hard guard rails
-on small problems (components) that **we fully understand**.
+on simple **components we fully understand**.
 
 ### Engineering
 
 Even if we are not writing software one line at a time, prompting is still a
-form of engineering. There is no vibe coding anymore than there is vibe
-sciencing. Neither engineering nor science was founded on laziness, and so it
-shall remain on my watch.
+form of engineering. Vibe coding has the same rigor as vibe sciencing: none.
+**Neither engineering nor science was founded on laziness**, and so it shall
+remain under my watch.
 
 The practice of engineering is an unending loop of designing, prototyping,
 testing, and refining. Iteration is natural. Failure is expected. Engineering
@@ -73,18 +75,31 @@ is also inherently a team-based activity. Very few things of value are
 engineered by a single person. When it comes time to write axioms and their
 tests, a diverse team will perform much better than a maverick flying solo.
 
+In a bioinformatics context, we expect our programs to be run by scientists on
+various *nix platforms using a CLI. Our target audience is smart, but possibly
+uniformed users who are likely in a rush. As such, the software must work on
+multiple systems and must be packaged with tutorials that cover typical usage
+scenarios. Consequently, we must **build our software on multiple systems** and
+interact with scientists to get feedback.
+
+What _exactly_ does "multiple systems" mean? It means more than one computer,
+for certain. Developing all of your code on one computer ensures it will break
+on another. "Multiple" also means different people, different languges, and
+different AI agents. If two languages/people/environments/etc produce different
+outputs, the spec is too brittle. The time to work at the "multiple" level is
+at the start, not as an afterthought.
+
 ## ACE In Practice ##
 
 I want to provide exercises that put you in the correct mindset to follow the
-ACE paradigm. These examples do not yet exist.
+ACE philosophy. These examples are under development.
 
 ------------------------------------------------------------------------------
 
 ## Legacy Rules ##
 
-Before the ACE Paradigm we had 5 Rules. These rules are still in effect, but
-today there is less emphasis on how to program and more emphasis on how to
-test.
+Before ACE we had 5 Rules. These rules are still in effect, but today there is
+less emphasis on how to program and more emphasis on how to organize.
 
 - Rule #1: Create Small Data
 - Rule #2: Develop in Parallel
