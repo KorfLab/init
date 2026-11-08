@@ -13,7 +13,7 @@ lifting, perhaps reaching for the stars is not just a goal, but an expectation.
 ## ACE in Theory ##
 
 In my research group, we write software by following a philosophy I call
-**ACE**: axiom-based, component-driven engineering*. The TL;DR looks like this:
+**ACE**[^1]: axiom-based, component-driven engineering*. The TL;DR looks like this:
 
 - Break up a complex problem into simple problems
 - Define the truths of the simple problems
@@ -25,8 +25,8 @@ There is nothing new here. All of these things were true long before AI. What's
 different about today is that we no longer write all of the code ourselves.
 That release of responsibility prompts us to state our goals more ephatically.
 
-* Of course axiom-based component-driven engineering also spells out ABCDE. But
-ABCDE is too big of a mouthful. I could equally have named ACE "axiomatic
+[^1]: Of course axiom-based component-driven engineering also spells out ABCDE.
+But ABCDE is too big of a mouthful. I could equally have named ACE "axiomatic
 component engineering" and not have this issue. But really, I did like that it
 matches ABCDE. Further, when gaming, I often use the tag "Ace", which is not a
 reference to my ability but a shorthand of "acetylene". However, some people
