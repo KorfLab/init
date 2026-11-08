@@ -6,14 +6,15 @@ What are the best practices in this new era? We could be very lazy. For
 example, we could prompt AI to: "make a program that does low complexity
 filtering on DNA" and AI would probably do a good job. However, instead of
 being lazy and being satisfied with _good_, what if we used AI to strive for
-_best_? What if we aim higher than due dilligence and reach for perfection? It
-was too hard to do that in the past, but with AI doing some of the heavy
-lifting, perhaps reaching for the stars is not just a goal, but an expectation.
+_perfect_? It was too hard to do that in the past, but with AI doing some of
+the heavy lifting, perhaps reaching for the stars is not just a stated goal
+that gets us on the roof, but an actual expectation.
 
 ## ACE in Theory ##
 
 In my research group, we write software by following a philosophy I call
-**ACE**[^1]: axiom-based, component-driven engineering*. The TL;DR looks like this:
+**ACE**[^1]: axiom-based, component-driven engineering. The TL;DR looks like
+this:
 
 - Break up a complex problem into simple problems
 - Define the truths of the simple problems
@@ -23,13 +24,14 @@ In my research group, we write software by following a philosophy I call
 
 There is nothing new here. All of these things were true long before AI. What's
 different about today is that we no longer write all of the code ourselves.
-That release of responsibility prompts us to state our goals more ephatically.
+That release of responsibility prompts us to state our goals more ephatically
+and ensure their completeness more rigorously.
 
 [^1]: Of course axiom-based component-driven engineering also spells out ABCDE.
 But ABCDE is too big of a mouthful. I could equally have named ACE "axiomatic
 component engineering" and not have this issue. But really, I did like that it
 matches ABCDE. Further, when gaming, I often use the tag "Ace", which is not a
-reference to my ability but a shorthand of "acetylene". However, some people
+reference to my ability, but a shorthand of "acetylene". However, some people
 were pronouncing this as "ace tylene" and I couldn't have that, so shortened it
 to "ace" and now my gaming tag and coding philosophy have neatly merged.
 
@@ -96,12 +98,13 @@ for certain. Developing all of your code on one computer ensures it will break
 on another. "Multiple" also means different people, different languges, and
 different AI agents. If two languages/people/environments/etc produce different
 outputs, the spec is too brittle. The time to work at the "multiple" level is
-at the start, not as an afterthought.
+from the beginning, not taped on as an afterthought.
 
 ## ACE In Practice ##
 
 I want to provide exercises that put you in the correct mindset to follow the
-ACE philosophy. These examples are under development.
+ACE philosophy. These examples are under development and will be featured in
+the reboot of MCB185.
 
 ------------------------------------------------------------------------------
 
