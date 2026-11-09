@@ -13,7 +13,7 @@ that gets us on the roof, but an actual expectation.
 ## ACE in Theory ##
 
 In my research group, we write software by following a philosophy I call
-**ACE**[^1]: axiom-based, component-driven engineering. The TL;DR looks like
+**ACE**: axiom-based, component-driven engineering. The TL;DR looks like
 this:
 
 - Break up a complex problem into simple problems
@@ -27,24 +27,16 @@ What's different about today is that we no longer write all of the code
 ourselves. That release of responsibility prompts us to do more with our time,
 such as create loftier goals and to see them through.
 
-[^1]: Of course axiom-based component-driven engineering also spells out ABCDE.
-But ABCDE is too big of a mouthful. I could equally have named ACE "axiomatic
-component engineering" and not have this issue. But really, I do like that it
-matches ABCDE, so it stays. Further, when gaming, I often use the tag "Ace",
-which is not a reference to my ability, but a shorthand of "acetylene".
-However, some people were pronouncing this as "ace tylene" and I couldn't have
-that, so shortened it to "ace", and now my gaming tag and coding philosophy
-have neatly merged.
-
 ### Axiom-Based
 
 In ACE, the first word is **Axiom**. It must be a very important word if it
 comes first. Not only is the word important, the act of defining our axioms is
 what should happen first. Axioms are our truths. For example, if we are
 building tools for sequence analysis, the letters of DNA and protein are
-axioms. Of course, there are many more. To make sure axioms stay true, we write
-tests that verify our axioms. Note that I wrote **we write tests**. AI does not
-write our axioms or our axiomatic tests: we do. One line at a time.
+axioms. Of course, there are many more. To make sure implementations reflect
+axioms, we write tests. Note that I wrote **we write tests**. I mean that in
+the old-fashioned manner: one line at a time. AI may implement a spec; it may
+not author the spec, the axioms, or the axiom tests.
 
 If your goal is to "build a complexity filter" the first thing you do is to
 define the axioms yourself. If you don't know what a complexity filter is or
@@ -99,9 +91,10 @@ products must therefore feature the following design principles
 What _exactly_ does "multiple systems" mean? It means more than one computer,
 for certain. Developing all of your code on one computer ensures it will break
 on another. "Multiple" also means different people, different languages, and
-different AI agents. If two languages/people/environments/etc produce different
-outputs, the spec is too brittle. The time to work at the "multiple" level is
-from the beginning, not stapled on as an afterthought.
+different AI agents. Two languages/people/environments/etc are only allowed to
+differ where the spec explicitly permits (e.g. in cases of equivalent sorting).
+The time to work at the "multiple" level is from the beginning, not stapled on
+as an afterthought.
 
 ## ACE In Practice ##
 
@@ -112,8 +105,9 @@ under development and will be featured in the reboot of MCB185 (Winter 2027).
 
 ## Legacy Rules ##
 
-Before ACE we had 5 Rules. These rules are still in effect, but today there is
-less emphasis on how to program and more emphasis on how to be understood.
+Before ACE we had 5 Rules. These rules are kept as originally written for
+historical reasons. Even though some of the rules no longer apply (Rule #5),
+the spirit of the rules remains intact.
 
 - Rule #1: Create Small Data
 - Rule #2: Develop in Parallel
