@@ -6,8 +6,8 @@ What are the best practices in this new era? AI allows us to be very lazy. For
 example, we could prompt AI to: "make a program that does low complexity
 filtering on DNA" and AI would probably do a good job. However, instead of
 being lazy and being satisfied with _good_, what if we used AI to strive for
-_perfect_? It was impracticle to do that in the past, but with AI doing some of
-the heavy lifting, perhaps reaching for the stars is not just a stated goal
+_perfect_? It was impractical to do that in the past, but with AI doing some of
+the heavy lifting, perhaps reaching for the stars is not just the stated goal
 that gets us on the roof, but an actual expectation.
 
 ## ACE in Theory ##
@@ -18,14 +18,14 @@ this:
 
 - Break up a complex problem into simple problems
 - Define the truths of the simple problems
-- Create simple building blocks with our truths as guardrails
+- Create simple building blocks with our truths as guard rails
 - Build complex things from simple building blocks
-- Ensure the complex things work as designed by replication
+- Ensure the complex things work as designed
 
 There is nothing new here. All of these things were in practice long before AI.
 What's different about today is that we no longer write all of the code
-ourselves. That release of responsibility prompts us to state our goals more
-ephatically and examine our progress more rigorously.
+ourselves. That release of responsibility prompts us to do more with our time,
+such as create loftier goals and to see them through.
 
 [^1]: Of course axiom-based component-driven engineering also spells out ABCDE.
 But ABCDE is too big of a mouthful. I could equally have named ACE "axiomatic
@@ -49,10 +49,9 @@ not write our axioms or our axiomatic tests: we do. One line at a time.
 If your goal is to "build a complexity filter" the first thing you do is to
 define the axioms yourself. If you don't know what a complexity filter is or
 what it is used for, then you have no business building the software until such
-time as you can state the axiomatic truths behind a complexity filter. What
-_exactly_ are the axioms in this example? Sequences, window sizes, entropy
-thresholds, and outputs that prove that the algorithm behaves _exactly_ as we
-have specified.
+time as you can state the axiomatic truths. What _exactly_ are the axioms in
+this example? Sequences, window sizes, entropy thresholds, and outputs that
+prove that the algorithm behaves _exactly_ as we have specified.
 
 ### Component-Driven
 
@@ -77,7 +76,7 @@ on **simple components we fully understand**.
 ### Engineering
 
 Even if we are not writing software one line at a time, prompting is still a
-form of engineering. Vibe coding has the same rigor as vibe sciencing: none.
+form of engineering. Vibe coding is like vibe sciencing: reprehensible.
 **Neither engineering nor science was founded on laziness**, and so it shall
 remain under my watch.
 
@@ -88,12 +87,14 @@ engineered by a single person. When it comes time to write axioms and their
 tests, a diverse team will perform much better than a maverick flying solo.
 
 In a bioinformatics context, we expect our programs to be run by scientists, on
-various *nix platforms, using a CLI in some kind of automated workflow. Our
-target audience is smart, usually in a rush, and probably under-educated in the
-nuances of the IT world they find themselves in. As such, the software must
-work on multiple systems, be packaged with tutorials that cover typical usage
-scenarios, and follow community standards for input/output. In order to achieve
-these goals, we must **build/deploy our software on multiple systems**.
+various *nix platforms, using a CLI in some kind, and probably in an automated
+workflow. Our target audience is smart, usually in a rush, and probably
+under-educated in the nuances of the IT world they find themselves in. Our
+products must therefore feature the following design principles
+
+- built and deployed on multiple systems
+- follow community standards for input/output
+- packaged with tutorials for common scenarios
 
 What _exactly_ does "multiple systems" mean? It means more than one computer,
 for certain. Developing all of your code on one computer ensures it will break
@@ -112,7 +113,7 @@ under development and will be featured in the reboot of MCB185 (Winter 2027).
 ## Legacy Rules ##
 
 Before ACE we had 5 Rules. These rules are still in effect, but today there is
-less emphasis on how to program and more emphasis on how to organize.
+less emphasis on how to program and more emphasis on how to be understood.
 
 - Rule #1: Create Small Data
 - Rule #2: Develop in Parallel
