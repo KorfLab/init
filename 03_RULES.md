@@ -43,8 +43,8 @@ comes first. Not only is the word important, the act of defining our axioms is
 what should happen first. Axioms are our truths. For example, if we are
 building tools for sequence analysis, the letters of DNA and protein are
 axioms. Of course, there are many more. To make sure axioms stay true, we write
-tests that prove them to be true. Note that I wrote **we write tests**. AI does
-not write our axioms or our axiomatic tests: we do. One line at a time.
+tests that verify our axioms. Note that I wrote **we write tests**. AI does not
+write our axioms or our axiomatic tests: we do. One line at a time.
 
 If your goal is to "build a complexity filter" the first thing you do is to
 define the axioms yourself. If you don't know what a complexity filter is or
@@ -59,7 +59,7 @@ Computers are very complex things. For example, nobody understands the entirety
 of an operating system. And yet, operating systems are made from many simple
 components, each of which can be fully understood. For example, one might know
 precisely the inputs, outputs, and error conditions of a function that computes
-a factorial. The input is a non-negative intger. The output is a positive
+a factorial. The input is a non-negative integer. The output is a positive
 integer. That's 5th grade math. But the factorial function can easily result in
 huge numbers that overflow typical integer and floating point representations.
 Consequently, building a factorial function inside a computer requires a little
@@ -98,7 +98,7 @@ products must therefore feature the following design principles
 
 What _exactly_ does "multiple systems" mean? It means more than one computer,
 for certain. Developing all of your code on one computer ensures it will break
-on another. "Multiple" also means different people, different languges, and
+on another. "Multiple" also means different people, different languages, and
 different AI agents. If two languages/people/environments/etc produce different
 outputs, the spec is too brittle. The time to work at the "multiple" level is
 from the beginning, not stapled on as an afterthought.
@@ -137,10 +137,10 @@ for multiple purposes:
 - Functional tests
 - Tutorials
 
-Bioinfomatics software development and experiments take much more time than you
-expect. The iterative debugging stage can be very long. In order to reduce the
-downtime between debugging sessions, we need data that can be processed very
-quickly, and whose outputs are uncomplicated.
+Bioinformatics software development and experiments take much more time than
+you expect. The iterative debugging stage can be very long. In order to reduce
+the downtime between debugging sessions, we need data that can be processed
+very quickly, and whose outputs are uncomplicated.
 
 Software changes over time. Even if we make no changes to our code, our
 software depends on other software, which may change silently. In order to
@@ -190,7 +190,7 @@ How does one Develop in Parallel in practice?
 
 All of the code you write should be managed in GitHub repositories. Generally,
 there is no need to make them private. GitHub isn't the place where you publish
-your data after you complete your experiments. It's where you work ever day. If
+your data after you complete your experiments. It's where you work every day. If
 you're a programmer of some kind, which you must be to be in the lab, your
 programming activity is part of your CV. Your GitHub profile and activity are
 therefore part of your CV.
@@ -278,7 +278,7 @@ easy way" instead of "the right way".
 - Have you become a slave to AI?
 
 Well stop doing it. Stop the copy-paste-modify practice. Stop looking up
-everthing on the Internet. Stop asking ChatGPT for answers. Stop using code
+everything on the Internet. Stop asking ChatGPT for answers. Stop using code
 completion. Use your brain to write every character of every line yourself, and
 when you get stuck ask a _person_ for help. Yes, this will take longer. But
 you're here to learn, not to act like a robot.
