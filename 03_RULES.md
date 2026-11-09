@@ -91,10 +91,10 @@ products must therefore feature the following design principles
 What _exactly_ does "multiple systems" mean? It means more than one computer,
 for certain. Developing all of your code on one computer ensures it will break
 on another. "Multiple" also means different people, different languages, and
-different AI agents. Two languages/people/environments/etc are only allowed to
-differ where the spec explicitly permits (e.g. in cases of equivalent sorting).
-The time to work at the "multiple" level is from the beginning, not stapled on
-as an afterthought.
+different AI agents. Changing _how_ the software was built should not
+substantially change the behavior of the program (rounding, sorting, etc. may
+create trivial dissimilarities). The time to work at the "multiple" level is
+from the beginning, not stapled on as an afterthought.
 
 ## ACE In Practice ##
 
@@ -106,8 +106,7 @@ under development and will be featured in the reboot of MCB185 (Winter 2027).
 ## Legacy Rules ##
 
 Before ACE we had 5 Rules. These rules are kept as originally written for
-historical reasons. Even though some of the rules no longer apply (Rule #5),
-the spirit of the rules remains intact.
+historical reasons.
 
 - Rule #1: Create Small Data
 - Rule #2: Develop in Parallel

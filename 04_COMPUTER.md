@@ -17,6 +17,12 @@ Machine.
 
 Use omp to turn your terminal into your coding agent.
 
+```
+curl -fsSL https://omp.sh/install | sh
+omp plugin install pi-freeflow
+omp --model freeflow/deepseek-v4.1-flash-free
+```
+
 ## Hive ##
 
 To use the UCD cluster, get an account on Hive. Go to https://hippo.ucdavis.edu
