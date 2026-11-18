@@ -13,9 +13,9 @@ Your personal computer is probably running Mac or Windows. Macs have Unix built
 in. Windows users should install Linux via WSL or install Linux in a Virtual
 Machine.
 
-## AI Assitance ##
+## AI ##
 
-Use omp to turn your terminal into your coding agent.
+Use omp to turn your terminal into your coding assistant and personal tutor.
 
 ```
 curl -fsSL https://omp.sh/install | sh
