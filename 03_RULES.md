@@ -8,11 +8,11 @@ filtering on DNA" and AI would probably do a good job. However, instead of
 being lazy and being satisfied with _good_, what if we used AI to strive for
 _perfect_? It was impractical to do that in the past, but with AI doing some of
 the heavy lifting, perhaps reaching for the stars is not just the stated goal
-that gets us on the roof, but an actual expectation.
+that gets us on the roof, but the sine qua non.
 
 ## ACE in Theory ##
 
-In my research group, we write software by following a philosophy I call
+In my research group, we write software by following a philosophy I'm calling
 **ACE**: axiom-based, component-driven engineering. The TL;DR looks like
 this:
 
@@ -29,21 +29,24 @@ such as create loftier goals and to see them through.
 
 ### Axiom-Based
 
-In ACE, the first word is **Axiom**. It must be a very important word if it
-comes first. Not only is the word important, the act of defining our axioms is
-what should happen first. Axioms are our truths. For example, if we are
-building tools for sequence analysis, the letters of DNA and protein are
-axioms. Of course, there are many more. To make sure implementations reflect
-axioms, we write tests. Note that I wrote **we write tests**. I mean that in
-the old-fashioned manner: one line at a time. AI may implement a spec; it may
-not author the spec, the axioms, or the axiom tests.
+In ACE, the first word is **Axiom**. This is by design. Not only are axioms of
+greatest significance, they are also featured at the outset of the design
+process. Axioms are our "operational truths". By **our** I mean humans. We
+don't let AI provide truths. Of course, AI will do its own internal testing.
+For example, it would be a very poor AI that wrote a FASTA parser and didn't do
+its own testing for zero-length records. While we expect an AI to write and
+perform tests, we must define the expected behaviors ourselves, and we must
+state those up-front as our axioms. To make sure implementations (code) reflect
+our axioms, we write tests. Note that I wrote **we write tests** not AI writes
+tests. I mean this in the old-fashioned manner: one line at a time.
 
 If your goal is to "build a complexity filter" the first thing you do is to
 define the axioms yourself. If you don't know what a complexity filter is or
-what it is used for, then you have no business building the software until such
-time as you can state the axiomatic truths. What _exactly_ are the axioms in
-this example? Sequences, window sizes, entropy thresholds, and outputs that
-prove that the algorithm behaves _exactly_ as we have specified.
+what it is used for, then you have no way of specifying the axioms and also no
+business designing the software. You must educate yourself before continuing.
+What _exactly_ are the axioms in this example? Sequences, window sizes, entropy
+thresholds, and outputs that prove that the algorithm behaves _exactly_ as we
+have specified.
 
 ### Component-Driven
 
@@ -98,15 +101,17 @@ from the beginning, not stapled on as an afterthought.
 
 ## ACE In Practice ##
 
-I want to provide exercises that put you in the ACE mindset. These examples are
-under development and will be featured in the reboot of MCB185 (Winter 2027).
+- This part is under development
+- See the new version of MCB185 (soon)
+- A full example will be given here too
 
 ------------------------------------------------------------------------------
 
 ## Legacy Rules ##
 
-Before ACE we had 5 Rules. These rules are kept as originally written for
-historical reasons.
+Before ACE we had 5 Rules. Except for some parts of Rule #5, which is out of
+date, all of these rules should still be followed. These rules are kept as
+originally written for historical reasons.
 
 - Rule #1: Create Small Data
 - Rule #2: Develop in Parallel
